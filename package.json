@@ -1,0 +1,54 @@
+{
+  "name": "garlic-toast",
+  "private": false,
+  "version": "0.0.2",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/jest": "^29.5.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "path": "^0.12.7",
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.2.3"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "browser": "./browser/specific/main.js",
+  "homepage": "https://github.com/Challenge-Closure/Garlic-Toast.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Challenge-Closure/Garlic-Toast.git"
+  }
+}
