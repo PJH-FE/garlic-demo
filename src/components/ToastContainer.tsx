@@ -1,5 +1,5 @@
 import "./../styles/toast.css";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import EventBus from "../utils/eventBus";
 import AlertToast from "./AlertToast";
@@ -29,7 +29,9 @@ const ToastContainer = ({ isFold, position = "t-r", time = 5000 }: Partial<Toast
   const [alertToasts, setAlertToasts] = useState<PositionedToast>(initialState);
   const [confirmToasts, setConfirmToasts] = useState<ConfirmEvent[]>([]);
 
-  useEffect(() => {
+  const isomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+  isomorphicLayoutEffect(() => {
     const handleToastEvent = (event: ToastEvent) => {
       const toastPosition = event.position ?? position;
       setAlertToasts((prevToasts: PositionedToast) => {
@@ -46,7 +48,7 @@ const ToastContainer = ({ isFold, position = "t-r", time = 5000 }: Partial<Toast
       setConfirmToasts((prevToasts) => [event, ...prevToasts]);
     };
 
-    //FIXME - 타입 오류
+    //FIXME - 타입 오류 해결 못함
     EventBus.subscribe(SHOW_TOAST, handleToastEvent);
     EventBus.subscribe(SHOW_CONFIRM_TOAST, handleConfirmToastEvent);
 
@@ -56,9 +58,8 @@ const ToastContainer = ({ isFold, position = "t-r", time = 5000 }: Partial<Toast
     };
   }, []);
 
-  if (typeof window === "undefined") return;
-
   const alertToastKeys = Object.keys(alertToasts) as unknown as ToastPosition[];
+
   return createPortal(
     <>
       <div className={`toast-container`}>
