@@ -1,7 +1,4 @@
-import type { Event } from "./toastType";
+import { ToastOptionType } from "./toastType";
 
-export type Topic = "SHOW_TOAST" | "SHOW_CONFIRM_TOAST";
-
-export type Listener<T> = (event: T) => void;
-
-export type TopicMap = Map<Topic, Listener<Event>[]>;
+export type Listener<T> = (data: T) => void;
+export type Topics = Map<string, Listener<ToastOptionType>[]>;
